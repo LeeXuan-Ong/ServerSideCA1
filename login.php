@@ -1,10 +1,11 @@
 <?php
+
     session_start();
     $message = "";
     if(count($_POST)>0){
         $conn = mysqli_connect('127.0.0.1:3306','root','','test') or die('Unable to Connect');
 //        $query = "SELECT * FROM users WHERE user_email=".'"'. $_POST['email'] . '"'." and password = ".'"' . $_POST["password"].'"';
-        $result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='" . $_POST["email"] . "' and user_password = '". $_POST["password"]."'");
+        $result = mysqli_query($conn, "SELECT * FROM users WHERE email='" . $_POST["email"] . "' and password = '". $_POST["password"]."'");
         if(!$result){
             mysqli_error($conn);
         }
@@ -14,6 +15,7 @@
             if( is_array($row)){
                 $_SESSION["id"] = $row["id"];
                 $_SESSION["name"] = $row["name"];
+                $_SESSION["role"] = $row["role"];
                 $_SESSION["conn"] = $conn;
             }
 
@@ -29,9 +31,8 @@
     ?>
 
 <html>
-<head>
-    <title>User Login</title>
-</head>
+<?php include_once ('header.php');
+include 'navigationBar.php';?>
 <body>
 <form name="frmUser" method="post" action="" align="center">
     <div class="message"><?php if($message!="") { echo $message; } ?></div>
@@ -45,5 +46,7 @@
     <input type="submit" name="submit" value="Submit">
     <input type="reset">
 </form>
+
+<a href="register.php">register</a>
 </body>
 </html>
