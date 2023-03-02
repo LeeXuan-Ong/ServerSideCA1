@@ -1,9 +1,8 @@
 <?php
-
+include 'database.php';
     session_start();
     $message = "";
     if(count($_POST)>0){
-        $conn = mysqli_connect('127.0.0.1:3306','root','','test') or die('Unable to Connect');
 //        $query = "SELECT * FROM users WHERE user_email=".'"'. $_POST['email'] . '"'." and password = ".'"' . $_POST["password"].'"';
         $result = mysqli_query($conn, "SELECT * FROM users WHERE email='" . $_POST["email"] . "' and password = '". $_POST["password"]."'");
         if(!$result){

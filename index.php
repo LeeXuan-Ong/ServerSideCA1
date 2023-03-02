@@ -21,13 +21,14 @@ $statement->closeCursor();
 <main class="container">
     <a href="addForm.php" class="btn btn-primary">Add Product</a>
 <!-- <?php //include './table.php';?> -->
-
-<?php if ($products){
+<div class="row">
+<?php
+if ($products){
     include 'cards.php';
 } else {
     echo '<div> There is nothing in the database.</div>';
 }?>
-
+</div>
 </main><!-- /.container -->
     <script src="js/bootstrap.bundle.min.js"></script>
   </body>

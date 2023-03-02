@@ -18,7 +18,7 @@ echo '
                 <a class="nav-link" aria-current="page" href="page-1.php">Page 1</a>
               </li>
               <li class="nav-item">
-               <a class="nav-link" aria-current="page" href="contact-form.html">Page 2</a>
+               <a class="nav-link" aria-current="page" href="newRegister.php">Page 2</a>
               </li>
               <li class="nav-item">';
 if(isset($_SESSION['id'])){
