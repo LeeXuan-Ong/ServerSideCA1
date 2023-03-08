@@ -8,8 +8,9 @@ include 'database.php';
 session_start();
 
 $id = $_GET['id'];
-$queryProducts = 'SELECT * FROM instruments where insId = '.$id.';';
+$queryProducts = "SELECT * FROM instruments where insId = ?;";
 $statement = $conn->prepare($queryProducts);
+$statement->bindParam(1,$id);
 $statement->execute();
 $product = $statement->fetch();
 $statement->closeCursor();
@@ -18,8 +19,9 @@ if($product['imageId']!= null){
 } else {
     $tempId = 1;
 }
-$queryProducts = 'SELECT * FROM images WHERE imgId = '.$tempId.';';
+$queryProducts = "SELECT * FROM images WHERE imgId = ?;";
 $statement = $conn->prepare($queryProducts);
+$statement->bindParam(1,$tempId);
 $statement->execute();
 $image = $statement->fetch();
 $statement->closeCursor();
