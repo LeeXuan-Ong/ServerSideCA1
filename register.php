@@ -1,51 +1,77 @@
-<?php
-require_once ('database.php');
-
-    $message = "";
-    if(count($_POST)>0){
-//        $conn = mysqli('127.0.0.1:3306','root','','instrument_data') ;
-
-        $query = "INSERT INTO users(email,password,role) values(?,?,?) ";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(1,$_POST['email']);
-        $stmt->bindParam(2,$_POST['password']);
-        $param = 'ADMIN';
-        $stmt->bindParam(3, $param);
-        $stmt->execute();
-        $result = $stmt->fetch();
-
-
-        if( is_array($result)){
-            $_SESSION["id"] = $result["id"];
-            $_SESSION["role"] = $result["role"];
-            $_SESSION["conn"] = $conn;
-        }
-
-    }
-
-    if(isset($_SESSION['id'])) {
-        header("Location: Login.php");
-    }
-    ?>
-
+<!DOCTYPE HTML>
 <html>
-<head>
-    <title>User Login</title>
-</head>
-<body>
-<form name="frmUser" method="post" action="" align="center">
-    <div class="message"><?php if($message!="") { echo $message; } ?></div>
-    <h3 align="center">Enter Register Details</h3>
-    Email:<br>
-    <input type="text" name="email">
-    <br>
-    Password:<br>
-    <input type="password" name="password">
-    <br><br>
-    <input type="submit" name="submit" value="Submit">
-    <input type="reset">
-</form>
+    <?php $title = "Register";
+    include 'header.php';
+    include 'navigationBar.php'?>
 
-<a href="register.php">register</a>
+<!-- define some style elements-->
+
+<body>
+<div class="container">
+<h1>Register</h1>
+<form method="POST" name="register" action="addAccount.php">
+<p>
+<label for='name'>Your Name:</label> <br>
+<input type="text" name="name">
+</p>
+<p>
+<label for='email'>Email Address:</label> <br>
+<input type="text" name="email"> <br>
+</p>
+<p>
+<label for='description'>Description:</label> <br>
+<textarea name="description"></textarea>
+</p>
+
+<p>
+<label for='phone'>Phone:</label> <br>
+<input name="phone"> <br>
+</p>
+
+<p>
+<label for='address'>Address:</label> <br>
+<textarea name="address"></textarea>
+</p>
+
+<p>
+<label for='age'>Age:</label> <br>
+<input name="age"><br>
+</p>
+
+<p>
+<label for='dob'>DOB:</label> <br>
+<input type="date" name="dob">
+</p>
+    <p>
+        <label for='gender'>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="null" name="gender" value="null">
+        <label for="null">Rather not say</label><br>
+    </p>
+
+    <p>
+        <label for='password'>Password:</label> <br>
+        <input type="password" name="password"> <br>
+    </p>
+    <p>
+        <label for='confirmPassword'>Confirm Password:</label> <br>
+        <input type="password" name="confirmPassword"> <br>
+    </p>
+
+
+<input type="submit" value="Submit"><br>
+</form>
+</div>
+
+<script language="JavaScript">
+var frmvalidator  = new Validator("register");
+frmvalidator.addValidation("name","req","Please provide your name");
+frmvalidator.addValidation("email","req","Please provide your email");
+frmvalidator.addValidation("email","email","Please enter a valid email address");
+</script>
+
 </body>
 </html>
