@@ -7,7 +7,13 @@ $message = "";
 $errors = '';
 if(count($_POST)>0) {
 //        $conn = mysqli('127.0.0.1:3306','root','','instrument_data') ;
-
+    $email = $_POST['email']?? '';
+    $password = $_POST['password']?? '';
+    $phone = $_POST['phone']?? '';
+    $address = $_POST['address']?? '';
+    $age = $_POST['age']?? '';
+    $dob = $_POST['dob']?? '';
+    $gender = $_POST['gender']?? '';
     $query = "INSERT INTO users(email,password,role,phone,address,age,dob,gender) values(?,?,?,?,?,?,?,?) ";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(1, $_POST['email']);
@@ -48,7 +54,7 @@ if(count($_POST)>0) {
 
             $name = $_POST['name'];
             $email_address = $_POST['email'];
-            $message = $_POST['description'];
+            $description = $_POST['description'];
 
             if (!preg_match(
                 "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i",
@@ -60,13 +66,25 @@ if(count($_POST)>0) {
                 $to = $myemail;
                 $email_subject = "Contact form submission: $name";
                 $email_body = "You have received a new message. " .
-                    " Here are the details:\n Name: $name \n Email: $email_address \n Message \n $message";
+                    " Here are the details from new users:\n";
+                $email_body .= $name!='' ? "Name: $name\n": '';
+                $email_body .= "Email: $email_address\n";
+                $email_body .= $description ? "Description:\n $description\n": '';
+                $email_body .= "Phone: $phone\n";
+                $email_body .= $address !='' ? "Address: $address\n": '';
+                $email_body .= $age !='' ? "Age: $age\n": '';
+                $email_body .= "Gender: $gender\n";
+
 
                 mail($to, $email_subject, $email_body, $headers);
-                //redirect to the 'thank you' page
             }
         }
         header('Location: login.php');
+    } else {
+        $message = "Failed to insert data information!";
+        echo '<script>alert('.$message.')</script>';
+        header('Location: index.php');
+
     }
 
 }

@@ -4,16 +4,10 @@ if(!isset($_SESSION['userType'])){
     $_SESSION['userType'] = 'guest';
 }
 require_once('database.php');
-
+$sql="SELECT * FROM INSTRUMENTS i  LEFT OUTER JOIN images im ON i.imageId = im.imgId ";
 // Get products
-if(isset($_GET['q'])){
-    $searchInput = $_GET['q'];
-
-}else{
-    $searchInput='';
-}
-
-$sql = "SELECT * FROM INSTRUMENTS i  LEFT OUTER JOIN images im ON i.imageId = im.imgId WHERE i.insName LIKE ? OR i.insDesc LIKE ? OR i.insCategory LIKE ?;";
+$searchInput = $_GET['q'] ?? '';
+$sql.= "WHERE i.insName LIKE ? OR i.insDesc LIKE ? OR i.insCategory LIKE ? ";
 $stmt = $conn->prepare($sql);
 $str = '%' . $searchInput . '%';
 $stmt->bindParam(1, $str);
@@ -24,10 +18,9 @@ $products = $stmt->fetchAll();
 $stmt->closeCursor();
 
 $queryProducts = 'SELECT * FROM images WHERE imgId = 1;';
-$statement = $conn->prepare($queryProducts);
-$statement->execute();
-$defaultImage = $statement->fetch();
-$statement->closeCursor();
+$stmt2 =$conn->query($queryProducts);
+$defaultImage = $stmt2->fetch();
+$stmt2->closeCursor();
 ?>
 
 <!doctype html>
@@ -46,9 +39,22 @@ $title = 'Home';
         <form method="get" action="index.php">
             <label for="q" >Search: </label>
             <input type="text" name="q" value="<?php echo $searchInput?>"/>
+
+            <select id="filter" name="f">
+                <option value="">Category</option>
+<?php
+$array =[];
+foreach($products as $product){
+    if(!in_array($product["insCategory"],$array )) {
+        array_push($array, $product["insCategory"]);
+        echo'<option value="'.$product["insCategory"].'">'.$product["insCategory"].'</option>';
+    }
+                }?>
+            </select>
             <input type="submit" value="search"/>
         </form>
     </div>
+
 <div class="row">
 <?php
 if($_SESSION['userType'] == 'admin'){

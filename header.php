@@ -10,7 +10,9 @@ echo '   <head>
     <meta name="generator" content="Hugo 0.80.0">
     <title>'.$title.'</title>
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/myCss.css" rel="stylesheet">
+<link href="css/bootstrap.min.css"  rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="mystyle.css" rel="stylesheet">
+    <script src="jquery-3.6.3.min.js"></script>
   </head>';
