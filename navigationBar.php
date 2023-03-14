@@ -1,7 +1,7 @@
 <?php
 
 echo '
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" aria-label="Eighth navbar example">
       <div class="container">
         
         <a class="navbar-brand" href="index.php">Instrumental</a>
