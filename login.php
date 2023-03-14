@@ -30,22 +30,31 @@ include 'database.php';
     ?>
 
 <html>
-<?php include_once ('header.php');
-include 'navigationBar.php';?>
+<?php include_once ('header.php');?>
 <body>
+<?php include 'navigationBar.php';?>
+<main class="container">
 <form name="frmUser" method="post" action="" align="center">
     <div class="message"><?php if($message!="") { echo $message; } ?></div>
-    <h3 align="center">Enter Login Details</h3>
-    Email:<br>
-    <input type="text" name="email">
-    <br>
-    Password:<br>
-    <input type="password" name="password">
-    <br><br>
-    <input type="submit" name="submit" value="Submit">
-    <input type="reset">
+    <div class="form-control">
+        <h3 class="mt-3 display-1">Login</h3>
+        <div class="input-group mt-5 mb-5">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Email: </span>
+        </div>
+        <input class="form-control" type="text" name="email">
+        </div>
+    <div class="input-group mt-5 mb-5">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Password: </span>
+        </div>
+        <input class="form-control" type="password" name="password">
+    </div>
+    <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+    <input class="btn btn-secondary" type="reset">
 </form>
 
-<a href="register.php">register</a>
+<a class="btn btn-success" href="register.php">register</a>
+</main>
 </body>
 </html>
