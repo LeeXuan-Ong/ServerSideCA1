@@ -27,20 +27,37 @@ $image = $statement->fetch();
 $statement->closeCursor();
 
 include 'header.php';
-include 'navigationBar.php';
 ?>
 
 <body>
-<main class="container">
-    <h1><?php echo $product['insName'];?></h1>
+<?php include 'navigationBar.php';?>
+<main role="main" class="container">
+    <h1 class="mt-2"><?php echo $product['insName'];?></h1>
+    <hr>
     <div>
-        <?php echo '<img class="image-style" id="image-style"src="data:'.$image['imgType'].';base64,'.base64_encode($image['imgContent']).'" alt="'.$product['insName'].'" >';?>
-        <div >
-            <h1><?php echo $product['insName'];?></h1>
-            <p><?php echo $product['insDesc'];?></p>
-            <p><?php echo $product['insPrice'];?></p>
-            <p><?php echo $product['insStocks'];?></p>
-            <p><?php echo $product['insCategory'];?></p>
+        <div class="d-flex justify-content-center border border-dark">
+            <?php echo '<img class="image-style" id="image-style"src="data:'.$image['imgType'].';base64,'.base64_encode($image['imgContent']).'" alt="'.$product['insName'].'" >';?>
+        </div>
+
+        <div>
+            <div class="mt-3">
+                <h2>Product Description</h2>
+            </div>
+            <p ><?php echo $product['insDesc'];?></p>
+                <hr>
+            <h3>Product Details</h3>
+            <div>
+                <h4>Price: </h4>
+                <p><?php echo $product['insPrice'];?></p>
+            </div>
+            <div>
+                <h4>Stocks: </h4>
+                <p><?php echo $product['insStocks'];?></p>
+            </div>
+            <div>
+                <h4>Category: </h4>
+                <p><?php echo $product['insCategory'];?></p>
+            </div>
 
         </div>
     </div>
@@ -60,7 +77,8 @@ include 'navigationBar.php';
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" name="register" onsubmit="return validation" action="">
+                    <div id="input_err"></div>
+                    <form method="POST" name="register" onsubmit="return orderValidation()" action="addForm.php">
                         <div class="form-control">
                             <h5>
                                 Form:
@@ -69,32 +87,32 @@ include 'navigationBar.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="formFname">First Name</span>
                                 </div>
-                                <input type="text" name="firstName" placeholder="First Name" class="form-control" required>
+                                <input type="text" name="firstName" id="fname" onchange="validateFirstName()" placeholder="First Name" class="form-control" required>
                             </div>
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="formLname">Last Name</span>
                                 </div>
-                                <input type="text" name="lastName" placeholder="Last Name" class="form-control" required>
+                                <input type="text" name="lastName" id="lname" placeholder="Last Name" onchange="validateLastName()" class="form-control" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="formQuantity">Quantity</span>
                                 </div>
-                                <input type="number" name="quantity" placeholder="0" class="form-control" required>
+                                <input  id="quantity" onchange="validateQuantity()" type="number" name="quantity" placeholder="0" class="form-control" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="formEmail">Email</span>
                                 </div>
-                                <input type="text" name="email" placeholder="test@gmail.com" class="form-control" required>
+                                <input type="text" name="email" id="email" onchange="validateEmail()" placeholder="test@gmail.com" class="form-control" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="formPhone">Phone Number</span>
                                 </div>
-                                <input type="text" name="phone" placeholder="087 000 0000" class="form-control" required>
+                                <input type="text" name="phone" id="phone" placeholder="087 000 0000"  onchange="validateEmail()"  class="form-control" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -107,8 +125,14 @@ include 'navigationBar.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text " id="formMessage">Message</span>
                                 </div>
-                                <textarea class="form-control" aria-label="With textarea"></textarea>
+                                <textarea name="message" class="form-control" aria-label="With textarea"></textarea>
                             </div>
+                            <input type="text" name="insName" value="<?php echo $product['insName']?>" class="d-none">
+                            <input type="text" name="insDesc" value="<?php echo $product['insDesc']?>" class="d-none">
+                            <input type="text" name="insPrice" value="<?php echo $product['insPrice']?>" class="d-none">
+                            <input type="text" name="insCategory" value="<?php echo $product['insCategory']?>" class="d-none">
+
+
                         </div>
                     </form>
                 </div>
@@ -120,8 +144,6 @@ include 'navigationBar.php';
         </div>
     </div>
 </main>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="js/validation.js"></script>
 </body>
 </html>
