@@ -35,13 +35,17 @@ $title = 'Home';
 <body>
 <main class="container">
 <!-- <?php //include './table.php';?> -->
-    <div>
-        <form method="get" action="index.php">
-            <label for="q" >Search: </label>
-            <input type="text" name="q" value="<?php echo $searchInput?>"/>
+    <div class="input-group mt-2 mb-2">
+        <form method="get" action="index.php" >
+            <div class="form-control">
+                <div class="input-group">
+                <div class="input-group-prepend">
+                    <label for="q" class="input-group-text" >Search: </label>
+                </div>
+            <input type="text" name="q" value="<?php echo $searchInput?>" class="form-control"/>
 
-            <select id="filter" name="f">
-                <option value="">Category</option>
+            <select class="form-select" id="filter" name="f">
+                <option value="" selected>Category</option>
 <?php
 $array =[];
 foreach($products as $product){
@@ -51,7 +55,9 @@ foreach($products as $product){
     }
                 }?>
             </select>
-            <input type="submit" value="search"/>
+            <input class="btn btn-primary" type="submit" value="search"/>
+                </div>
+            </div>
         </form>
     </div>
 
