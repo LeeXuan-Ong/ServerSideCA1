@@ -1,0 +1,20 @@
+
+.text-link{
+    text-decoration: none;
+}
+
+.image-style{
+    max-width: 400px;
+    max-height: 600px;
+    min-height: 200px;
+    min-width: 200px;
+
+}
+
+.image-index{
+    max-height: 200px;
+}
+
+main{
+    padding: 60px 0px 0px 0px;
+}
