@@ -10,6 +10,7 @@ function autoFillAge(){
     var today = new Date();
     var birthDate = new Date(dob);
     document.getElementById("age").value = today.getFullYear() - birthDate.getFullYear();
+    ageValidation = true;
 }
 
 function autoFillDOB(){
@@ -18,7 +19,6 @@ function autoFillDOB(){
     var birthDate = new Date();
     birthDate.setFullYear(today.getFullYear() - age);
     document.getElementById("dob").value = birthDate.toISOString().split('T')[0];
-    ageValidation = true;
 }
 
 //function for validation
