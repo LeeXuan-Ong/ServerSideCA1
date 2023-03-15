@@ -3,28 +3,24 @@ include 'database.php';
     session_start();
     $message = "";
     if(count($_POST)>0){
-//        $query = "SELECT * FROM users WHERE user_email=".'"'. $_POST['email'] . '"'." and password = ".'"' . $_POST["password"].'"';
-        $result = mysqli_query($conn, "SELECT * FROM users WHERE email='" . $_POST["email"] . "' and password = '". $_POST["password"]."'");
-        if(!$result){
-            mysqli_error($conn);
-        }
-        if(mysqli_num_rows($result) == 1){
-            $row = mysqli_fetch_array($result);
-
-            if( is_array($row)){
-                $_SESSION["id"] = $row["id"];
-                $_SESSION["name"] = $row["name"];
-                $_SESSION["role"] = $row["role"];
-                $_SESSION["conn"] = $conn;
-            }
-
+        $query =  "SELECT * FROM users WHERE email=? and password =?";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(1, $_POST['email']);
+        $stmt->bindParam(2, $_POST['password']);
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        if($count > 0){
+            $result = $stmt->fetch();
+            $_SESSION["id"] = $result["userId"];
+            $_SESSION["email"] = $result["email"];
+            $_SESSION["userType"] = $result["role"];
         } else {
             $message = "INVALID EMAIL AND PASSWORD";
         }
 
     }
 
-    if(isset($_SESSION['id'])) {
+    if(isset($_SESSION["id"])) {
         header("Location: index.php");
     }
     ?>

@@ -17,9 +17,6 @@ echo '
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="formRecords.php">Record Forms</a>
               </li>
-              <li class="nav-item">
-               <a class="nav-link" aria-current="page" href="register.php">Page 2</a>
-              </li>
               <li class="nav-item">';
 if(isset($_SESSION['id'])){
     echo '<a class="nav-link" aria-current="page" href="logout.php"> Logout </a>';

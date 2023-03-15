@@ -6,7 +6,6 @@ $message = "";
 
 $errors = '';
 if(count($_POST)>0) {
-//        $conn = mysqli('127.0.0.1:3306','root','','instrument_data') ;
     $email = $_POST['email']?? '';
     $password = $_POST['password']?? '';
     $phone = $_POST['phone']?? '';
@@ -18,7 +17,7 @@ if(count($_POST)>0) {
     $stmt = $conn->prepare($query);
     $stmt->bindParam(1, $_POST['email']);
     $stmt->bindParam(2, $_POST['password']);
-    $param = 'CUSTOMER';
+    $param = 'customer';
     $stmt->bindParam(3, $param);
     $stmt->bindParam(4, $_POST['phone']);
     $stmt->bindParam(5, $_POST['address']);
@@ -35,9 +34,6 @@ if(count($_POST)>0) {
         $_SESSION["id"] = $result["id"];
         $_SESSION["email"] = $result["email"];
         $_SESSION["role"] = $result["role"];
-        $_SESSION["conn"] = $conn;
-        if(!in_array($_SERVER['REMOTE_ADDR'],['127.0.0.1','::1','127.0.0.1:3306'])){
-
             $myemail = 'D00253282@student.dkit.ie';// <-----Put your DkIT email address here.
             if (empty($_POST['name']) ||
                 empty($_POST['email']) ||
@@ -87,4 +83,4 @@ if(count($_POST)>0) {
 
     }
 
-}
+//}

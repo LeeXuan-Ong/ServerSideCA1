@@ -18,6 +18,7 @@ function autoFillDOB(){
     var birthDate = new Date();
     birthDate.setFullYear(today.getFullYear() - age);
     document.getElementById("dob").value = birthDate.toISOString().split('T')[0];
+    ageValidation = true;
 }
 
 //function for validation
@@ -34,7 +35,7 @@ function validateEmail(){
 
 function validatePhone(){
     var phone = document.forms["register"]["phone"].value;
-    if(!phone.match(/^[0-9]{3} [0-9]{3} [0-9]{4}$/)) {
+    if(!phone.match(/^[0-9]{10}$/)) {
         document.getElementById("phone").style.borderColor = "red";
         phoneValidation = false ;
     } else{
@@ -58,10 +59,12 @@ function validateAge(){
 function validatePassword(){
     var x = document.forms["register"]["password"].value;
     var y = document.forms["register"]["confirmPassword"].value;
-    if (x !== y) {
+    if (x.match(y) && x.length >= 8 && y.length >= 8) {
+        document.getElementById("password").style.borderColor = "red";
         document.getElementById("confirmpassword").style.borderColor = "red";
         passwordValidation = false;
     } else {
+        document.getElementById("password").style.borderColor = "black";
         document.getElementById("confirmpassword").style.borderColor = "black";
         passwordValidation = true;
     }
@@ -80,34 +83,34 @@ let quantityValidation = false;
 let firstNameValidation = false;
 let lastNameValidation = false;
 function validateQuantity(){
-    var quantity = document.forms["order"]["quantity"].value;
+    var quantity = document.forms["register"]["quantity"].value;
     if(!quantity.match(/^[0-9]{1,3}$/)) {
         document.getElementById("quantity").style.borderColor = "red";
         quantityValidation = false;
     } else{
-        document.getElementById("formQuantity").style.borderColor = "black";
+        document.getElementById("quantity").style.borderColor = "black";
         quantityValidation = true;
     }
 }
 
 function validateFirstName(){
-    var firstName = document.forms["order"]["firstName"].value;
+    var firstName = document.forms["register"]["firstName"].value;
     if(!firstName.match(/^[a-zA-Z]+$/)) {
-        document.getElementById("fname").style.borderColor = "red";
+        document.getElementById("firstName").style.borderColor = "red";
         firstNameValidation = false;
     } else{
-        document.getElementById("fname").style.borderColor = "black";
+        document.getElementById("firstName").style.borderColor = "black";
         firstNameValidation = true;
     }
 }
 
 function validateLastName(){
-    var lastName = document.forms["order"]["lastName"].value;
+    var lastName = document.forms["register"]["lastName"].value;
     if(!lastName.match(/^[a-zA-Z]+$/)) {
-        document.getElementById("lname").style.borderColor = "red";
+        document.getElementById("lastName").style.borderColor = "red";
         lastNameValidation = false;
     } else{
-        document.getElementById("lname").style.borderColor = "black";
+        document.getElementById("lastName").style.borderColor = "black";
         lastNameValidation = true;
     }
 }
@@ -118,4 +121,14 @@ function orderValidation(){
     } else{
         return false;
     }
+}
+
+function logvali(){
+    console.log("emailValidation: " + emailValidation)
+    console.log("phoneValidation: " + phoneValidation)
+    console.log("ageValidation: " + ageValidation)
+    console.log("passwordValidation: " + passwordValidation)
+    console.log("quantityValidation: " + quantityValidation)
+    console.log("firstNameValidation: " + firstNameValidation)
+    console.log("lastNameValidation: " + lastNameValidation)
 }

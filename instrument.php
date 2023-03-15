@@ -87,14 +87,14 @@ include 'header.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="formFname">First Name</span>
                                 </div>
-                                <input type="text" name="firstName" id="fname" onchange="validateFirstName()" placeholder="First Name" class="form-control" required>
+                                <input type="text" name="firstName" id="firstName" onchange="validateFirstName()" placeholder="First Name" class="form-control" required>
                             </div>
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="formLname">Last Name</span>
                                 </div>
-                                <input type="text" name="lastName" id="lname" placeholder="Last Name" onchange="validateLastName()" class="form-control" required>
+                                <input type="text" name="lastName" id="lastName" placeholder="Last Name" onchange="validateLastName()" class="form-control" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -112,7 +112,7 @@ include 'header.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="formPhone">Phone Number</span>
                                 </div>
-                                <input type="text" name="phone" id="phone" placeholder="087 000 0000"  onchange="validateEmail()"  class="form-control" required>
+                                <input type="text" name="phone" id="phone" placeholder="087 000 0000"  onchange="validatePhone()"  class="form-control" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -127,23 +127,26 @@ include 'header.php';
                                 </div>
                                 <textarea name="message" class="form-control" aria-label="With textarea"></textarea>
                             </div>
+                            <input type="text" name="insID" value="<?php echo $product['insID']?>" class="d-none">
                             <input type="text" name="insName" value="<?php echo $product['insName']?>" class="d-none">
                             <input type="text" name="insDesc" value="<?php echo $product['insDesc']?>" class="d-none">
                             <input type="text" name="insPrice" value="<?php echo $product['insPrice']?>" class="d-none">
                             <input type="text" name="insCategory" value="<?php echo $product['insCategory']?>" class="d-none">
 
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
 
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit Form</button>
+                    <button onclick="logvali()" type="button"> log</button>
                 </div>
             </div>
         </div>
     </div>
 </main>
 <script src="js/validation.js"></script>
+<?php include 'footer.php';?>
 </body>
 </html>

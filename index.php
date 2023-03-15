@@ -1,10 +1,13 @@
+<!doctype html>
+<html lang="en">
+
 <?php
 session_start();
 if(!isset($_SESSION['userType'])){
     $_SESSION['userType'] = 'guest';
 }
 require_once('database.php');
-$sql="SELECT * FROM INSTRUMENTS i  LEFT OUTER JOIN images im ON i.imageId = im.imgId ";
+$sql="SELECT * FROM instruments i  LEFT OUTER JOIN images im ON i.imageId = im.imgId ";
 // Get products
 $searchInput = $_GET['q'] ?? '';
 $sql.= "WHERE i.insName LIKE ? OR i.insDesc LIKE ? OR i.insCategory LIKE ? ";
@@ -22,9 +25,6 @@ $stmt2 =$conn->query($queryProducts);
 $defaultImage = $stmt2->fetch();
 $stmt2->closeCursor();
 ?>
-
-<!doctype html>
-<html lang="en">
 
 <?php
 $title = 'Home';
@@ -63,7 +63,7 @@ foreach($products as $product){
 
 <div class="row">
 <?php
-if($_SESSION['userType'] == 'admin'){
+if($_SESSION["userType"] == 'admin'){
     echo '<a href="addInstrumentForm.php" class="btn btn-primary">Add New Instrument</a>';
 }
 if ($products){
@@ -73,6 +73,7 @@ if ($products){
 }?>
 </div>
 </main><!-- /.container -->
+<?php include 'footer.php';?>
     <script src="js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

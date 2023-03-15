@@ -28,7 +28,7 @@
 
 <p>
 <label for='phone'>Phone:</label> <br>
-<input id="phone" type="number" onchange="validatePhone()" name="phone" placeholder="082 000 0000" required> <br>
+<input id="phone" type="text" onchange="validatePhone()" name="phone" placeholder="082 000 0000" required> <br>
 </p>
 
 <p>
@@ -81,7 +81,5 @@
 </main>
     <?php include 'footer.php'?>
 <script src="js/validation.js"></script>
-
-
 </body>
 </html>
