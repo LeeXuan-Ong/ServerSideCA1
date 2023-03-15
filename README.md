@@ -13,8 +13,9 @@ I used html, css, Javascript, php, mysql(database) to build this website. I used
 3. Start the Apache and MySQL server
 4. Open the browser and type in localhost/phpmyadmin
 5. Import the sql file into database.
-6. Open the browser and type in localhost/(the folder name)
-7. The website should be up and running
+6. Add a new folder name anything you want
+7. Open the browser and type in localhost/yourfoldername
+8. The website should be up and running
 
 (If you do not want to do the installation you can straight go to the website by clicking on the link below)
 - https://mysql07.comp.dkit.ie/D00253282/Instruments/index.php
