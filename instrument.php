@@ -140,7 +140,6 @@ include 'header.php';
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="logvali()" type="button"> log</button>
                 </div>
             </div>
         </div>
