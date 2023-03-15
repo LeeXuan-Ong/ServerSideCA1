@@ -35,6 +35,7 @@ I used html, css, Javascript, php, mysql(database) to build this website. I used
 11. Admin can view all the form that all users submitted
 
 ## Future Improvements
+Due to the time constraint, I am not able to finish all the features that I want to implement. Below are the list of features that I want to implement in the future.
 1. Add more features to the website
 2. Add edit to the instrument
 3. Add delete to the instrument
