@@ -76,8 +76,6 @@
 </form>
     </div>
 
-    <button onclick="logvali()" class="btn btn-primary"> log</button>
-
 </main>
     <?php include 'footer.php'?>
 <script src="js/validation.js"></script>

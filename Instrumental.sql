@@ -60,8 +60,7 @@ CREATE TABLE forms(
 `formPhone` int(11) NOT NULL,
 `formQuantity` int(11) NOT NULL,
 `insId` int(11) NOT NULL,
-PRIMARY KEY (formId),
-FOREIGN KEY (userId) REFERENCES Users(userId)
+PRIMARY KEY (formId)
 );
 
 INSERT INTO `forms` (`formId`, `formFirstName`, `formLastName`, `formMessage`, `created_at`, `userId`, `formEmail`, `formAddress`, `formPhone`, `formQuantity`, `insId`) VALUES
