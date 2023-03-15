@@ -127,7 +127,7 @@ include 'header.php';
                                 </div>
                                 <textarea name="message" class="form-control" aria-label="With textarea"></textarea>
                             </div>
-                            <input type="text" name="insID" value="<?php echo $product['insID']?>" class="d-none">
+                            <input type="text" name="insId" value="<?php echo $product['insId']?>" class="d-none">
                             <input type="text" name="insName" value="<?php echo $product['insName']?>" class="d-none">
                             <input type="text" name="insDesc" value="<?php echo $product['insDesc']?>" class="d-none">
                             <input type="text" name="insPrice" value="<?php echo $product['insPrice']?>" class="d-none">

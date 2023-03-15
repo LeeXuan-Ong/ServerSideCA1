@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-    <?php $title = "Register";
+    <?php $title = "Register Account";
     include 'header.php';
     include 'navigationBar.php'?>
 

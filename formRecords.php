@@ -11,13 +11,23 @@ if(!isset($_SESSION["id"])){
 
 <!DOCTYPE html>
 <html>
-<?php include_once ('header.php');
-$sql="SELECT * FROM forms WHERE userId = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(1, $id);
-$stmt->execute();
-$forms = $stmt->fetchAll();
-$stmt->closeCursor();
+<?php
+$title = "Form Records";
+include_once ('header.php');
+if($_SESSION["userType"] != "admin"){
+    $sql="SELECT * FROM forms WHERE userId = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1, $id);
+    $stmt->execute();
+    $forms = $stmt->fetchAll();
+    $stmt->closeCursor();
+} else {
+    $sql="SELECT * FROM forms";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $forms = $stmt->fetchAll();
+    $stmt->closeCursor();
+}
 ?>
 <body>
 <?php include 'navigationBar.php';?>

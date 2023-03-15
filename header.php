@@ -16,4 +16,5 @@ echo '   <head>
     <!-- Custom styles for this template -->
 <link href="css/bootstrap.min.css"  rel="stylesheet">
 <link href="css/myCss.css" rel="stylesheet">
+<link rel="icon" href="icon.png">
   </head>';

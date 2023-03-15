@@ -23,6 +23,8 @@ include 'database.php';
     if(isset($_SESSION["id"])) {
         header("Location: index.php");
     }
+
+    $title = "Login";
     ?>
 
 <html>
